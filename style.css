@@ -3,6 +3,8 @@
 .stack {
 	display: flex;
 	flex-direction: column;
+	
+	flex: 1 1 auto;
 }
 
 .hori {
@@ -21,6 +23,9 @@
 }
 
 .header-bar {	
+	display: flex;
+	flex-direction: row;
+
 	background-color: var(--main-color); 
 }
 
@@ -60,6 +65,11 @@
 }
 
 /* end region - areas */
+
+#logo-img {
+	width: 7vw;
+	margin: 5;
+}
 
 h1 {
 	margin-left: 1vw;
