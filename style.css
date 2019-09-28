@@ -20,15 +20,15 @@
 	margin: 1; 
 }
 
-.header-bar {
-	background-color: var(--secondary-color-1); 
+.header-bar {	
+	background-color: var(--main-color); 
 }
 
 .toolbar {	
 		display: flex;
 		flex-direction: row;
 	
-		background-color: var(--accent-color);		
+		background-color: var(--accent-color-1);		
 		height: 1vw;	
 }
 
@@ -55,21 +55,24 @@
 }
  
 .footer-bar {
-	color : var(--accent-color);
-	background-color: var(--secondary-color-1); 	
+	color : var(--accent-color-2);
+	background-color: var(--main-color); 	
 }
 
 /* end region - areas */
 
 h1 {
-	color : var(--main-color);
+	margin-left: 1vw;
+	
+	color : var(--secondary-color-1);
 }
  
 :root {
 	
-	--main-color: #cc5500;
-	--secondary-color-1: #fdb833;
-	--secondary-color-2: #ffd07b;
-	--accent-color: #296eb4;
+	--main-color: #004907;
+	--secondary-color-1: #FFFFFF;
+	--secondary-color-2: #8F9491;
+	--accent-color-1: #6E0082;
+	--accent-color-2: #8BAC8E;
 	
 }     
