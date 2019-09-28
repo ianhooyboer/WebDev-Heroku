@@ -1,0 +1,75 @@
+/* layout */
+
+.stack {
+	display: flex;
+	flex-direction: column;
+}
+
+.hori {
+	display: flex;
+	flex-direction: row;
+	
+	flex: 1 1 auto;
+}
+
+/* endregion layout */
+
+/* areas */
+
+#page-wrapper {
+	margin: 1; 
+}
+
+.header-bar {
+	background-color: var(--secondary-color-1); 
+}
+
+.toolbar {	
+		display: flex;
+		flex-direction: row;
+	
+		background-color: var(--accent-color);		
+		height: 1vw;	
+}
+
+.page-content {
+	flex: 1 1 auto;
+	
+	background-color: var(--secondary-color-2);
+	padding: 1vw;
+}
+
+.sidebar {
+	flex: 0 0 auto;
+	
+	width: 10 vw;
+	padding: 1vw;
+	
+	border-right-color: black;
+	border-right-style: solid;
+	border-right-width: 2.5px;
+	
+	border-bottom-color: black;
+	border-bottom-style: solid;
+	border-bottom-width: 2.5px;
+}
+ 
+.footer-bar {
+	color : var(--accent-color);
+	background-color: var(--secondary-color-1); 	
+}
+
+/* end region - areas */
+
+h1 {
+	color : var(--main-color);
+}
+ 
+:root {
+	
+	--main-color: #cc5500;
+	--secondary-color-1: #fdb833;
+	--secondary-color-2: #ffd07b;
+	--accent-color: #296eb4;
+	
+}     
