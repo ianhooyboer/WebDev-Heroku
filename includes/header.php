@@ -1,9 +1,7 @@
 <?php
 
 include ($_SERVER["DOCUMENT_ROOT"] . "/includes/arrays.php");
-
-
-
+ 
 echo $_SERVER["DOCUMENT_ROOT"] . "/includes/pages/dashboard.php";
 
 ?>

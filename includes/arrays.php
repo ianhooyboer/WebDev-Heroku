@@ -2,8 +2,8 @@
 
 	$navLinks = array
 	(
-		'dashboard' => "dashboard.php",
-		'newgame' => "newgame.php",
+		'dashboard' => "/includes/pages/dashboard.php",
+		'newgame' => "/includes/pages/newgame.php"
 	);
 
 ?>
