@@ -29,14 +29,16 @@ class Dao {
   }
   */
   
-  /* public function saveComment ($comment) {
+   public function saveUser ($username, $pass, $email) {
     $conn = $this->getConnection();
-    $saveQuery = "insert into comment (comment) values (:comment)";
+    $saveQuery = "insert into User (username, password, email) values (:username, :pass, :email)";
     $q = $conn->prepare($saveQuery);
-    $q->bindParam(":comment", $comment);
+    $q->bindParam(":username", $username);
+	$q->bindParam(":pass", $pass);
+	$q->bindParam(":email", $email);
     $q->execute();
   }
-  */
+  
 
   /* public function deleteComment ($id) {
     $conn = $this->getConnection();

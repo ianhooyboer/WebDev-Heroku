@@ -17,26 +17,27 @@ include($_SERVER["DOCUMENT_ROOT"] . "/includes/sidebar.php");
  
 	<div class="page-content">
 	<!-- replace this with a form that validates user input against the DB -->
-		<form method="POST" action="/actions/login_handler.php">
-			<div> LOGIN </div>
-			<input type="text" name="login"/>
-			<div> PASSWORD </div>	
+		<form method="POST" action="/actions/create_user.php">
+			<div> Username </div>
+			<input type="text" name="username"/>
+			<div> Password </div>
 			<div> <input type="password" name="password"/> </div>
+			<div> Email </div>
+			<div> <input type="text" name="email"/> </div>			
+			
 			<div   class="top-margin"> <input type="submit"/> </div>
 		</form>
 
 	<?php
-		if (isset($_SESSION['message'])) {
-			echo "<div class='message bad'>{$_SESSION['message']}</div>";
-			
-			unset($_SESSION['message']);
-		}
-	?>	
+    if (isset($_SESSION['messages'])) {
+       foreach ($_SESSION['messages'] as $message) {
+         echo "<div class='message {$_SESSION['sentiment']}'>{$message}</div>";
+       }
+	   
+	   unset($_SESSION['messages']);
+    }
 
-	<!-- link to createuser.php -->
-	<?php 
-		echo '<a href="' . $navLinks['createuser'] . '"> Create New Account </a>';
-	?>
+    ?>
 		
 	</div>
 	

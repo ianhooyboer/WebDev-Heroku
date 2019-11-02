@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+if (!isset($_SESSION['logged_in'])) $_SESSION['logged_in'] = false;
 
 include ($_SERVER["DOCUMENT_ROOT"] . "/includes/arrays.php"); 
 
@@ -24,10 +25,10 @@ include ($_SERVER["DOCUMENT_ROOT"] . "/includes/arrays.php");
 			
 			
 			<?php 
-			//<!-- if NOT logged in, display MY ACCOUNT button, link to login.php -->
 			$buttonText = "";
 			$buttonLink = "";
 			
+			//<!-- if NOT logged in, display MY ACCOUNT button, link to login.php -->
 			if ($_SESSION['logged_in'] == false)
 			{
 				$buttonText = "My Account";
@@ -42,7 +43,7 @@ include ($_SERVER["DOCUMENT_ROOT"] . "/includes/arrays.php");
 			
 			echo '<div class="button-wrapper r-align">  <a href="' . $buttonLink . '" id="account-btn">' . $buttonText . '</a>'; 
 			
-			if ($_SESSION['logged_in'] == true) echo '<form method="POST" action="/actions/logout_handler.php" class="r-align"> <input type="submit" value="Log Out?"/> </form>';
+			if ($_SESSION['logged_in'] == true) echo '<form method="POST" action="/actions/logout_handler.php" class="r-align top-margin"> <input  type="submit" value="Log Out?"/> </form>';
 			
 			echo '</div>';
 			
