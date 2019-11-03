@@ -23,8 +23,28 @@ include($_SERVER["DOCUMENT_ROOT"] . "/includes/sidebar.php");
 		}
 		else {
 			//<!-- replace this with a readout of a user's games -->
-			echo '<p> This is your dashboard! </p>';
-			echo '<p> There is no content, add a new game! </p>';
+			 
+			
+				require_once ($_SERVER["DOCUMENT_ROOT"] . "/Dao.php");
+				$dao = new Dao();
+				$games = $dao->getGames(); 
+			
+				//if ($games->rowCount() > 0) 
+				//{
+				//	echo "<ul>";
+				
+				//	foreach($games as $game)
+				//	{
+				//		echo "<li>" . $game['username'] . "</li>";
+				//	}
+					
+				//	echo "</ul>";
+				//}
+				//else 
+				//{
+				//	echo '<p> This is your dashboard! </p>';
+				//	echo '<p> Add a game to begin building your collection! </p>';
+				//} 
 		}
 	?>		
 		

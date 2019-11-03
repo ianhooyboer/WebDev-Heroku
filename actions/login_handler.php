@@ -7,12 +7,9 @@ session_start();
 $username = $_POST['login'];
 $password = $_POST['password'];
 
-// $valid = $dao->isValidUser($username, $password);
-
-$valid = false;
-if ($username == "asdf" && $password == "asdf") {
-  $valid = true;
-}
+require_once ($_SERVER["DOCUMENT_ROOT"] . "/Dao.php");
+$dao = new Dao();
+$valid = $dao->isValidUser($username, $password);
 
 $_SESSION = array();
 if ($valid) 

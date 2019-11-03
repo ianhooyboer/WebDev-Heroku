@@ -8,6 +8,7 @@
     $sentiment = '';
 	
 	$user = $_POST['username'];
+	$messages[] =  $user;
 	if (strlen($user) < 4)
 	{
 		$messages[] = "Username must be at least four characters.";
@@ -15,6 +16,7 @@
 	}
 	
 	$pass = $_POST['password']; 
+	$messages[] =  $pass;
 	if (strlen($pass) < 8)
 	{
 		$messages[] = "Password must be at least eight characters.";
@@ -22,6 +24,7 @@
 	}
 	
 	$email = $_POST['email'];
+	$messages[] = $email;
 	//TODO: Validate Email with RegEx here
 	
 	if (count($messages) > 0)
@@ -38,8 +41,17 @@
 	
 	require_once ($_SERVER["DOCUMENT_ROOT"] . "/Dao.php");
 	$dao = new Dao();
-	$dao->saveUser($user, $password, $email);
-	$_SESSION['message'] = "New user created";
-    $_SESSION['sentiment'] = 'good';
-    header("Location: " . $navLinks['login']);
+	$result = $dao->saveUser($user, $password, $email);
+	if ($result == true)
+	{
+		$_SESSION['message'] = "New user created";
+		$_SESSION['sentiment'] = 'good';
+		header("Location: " . $navLinks['login']);		
+	}
+	else 
+	{
+		$_SESSION['message'] = "New user failed to be created";
+		$_SESSION['sentiment'] = 'bad';
+		header("Location: " . $navLinks['createuser']);
+	}
 		

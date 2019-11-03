@@ -17,26 +17,62 @@ class Dao {
     return $connection;
   }
 
-  /* public function getComments() {
+   public function getGames() {
     $conn = $this->getConnection();
     try {
-    return $conn->query("select comment_id, comment, date_entered  from comment order by date_entered asc", PDO::FETCH_ASSOC);
+	//$sql = "select boardgame.name from user join bgCollection on user.ID = bgCollection.UserID join boardgame on bgCollection.bgID = boardgame.ID where username = testname";
+	$sql = "select username from user";
+    //return $conn->query("select comment_id, comment, date_entered  from comment order by date_entered asc", PDO::FETCH_ASSOC);
+	return $conn->query($sql, PDO::FETCH_ASSOC);
+	//echo $test->rowCount();
+	//return $test;
+	//$query = "select boardgame.name from user join bgCollection on user.ID = bgCollection.UserID join boardgame on bgCollection.bgID = boardgame.ID where username = testname";
+	//$q = $conn->prepare($query);
+	////$q->bindParam(":username", $user);
+	//$q->execute();
+	
+	
+	//select username, boardgame.name
+	//from user join bgCollection on user.ID = bgCollection.UserID
+	//		join boardgame on bgCollection.bgID = boardgame.ID
+	
+	
     } catch(Exception $e) {
       echo print_r($e,1);
       exit;
 
     }
   }
-  */
+  
+public function isValidUser($user, $pass)
+	{
+		$conn = $this->getConnection();
+	  
+		$sql = "select Count(*) from User where username = :username AND password = :password";
+		$q = $conn->prepare($sql);
+		$q->bindParam(":username", $user);
+		$q->bindParam(":password", $pass);
+		$q->execute();	  
+		
+		if ($q->fetchColumn() == 1)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+  
   
    public function saveUser ($username, $pass, $email) {
     $conn = $this->getConnection();
-    $saveQuery = "insert into User (username, password, email) values (:username, :pass, :email)";
+    $saveQuery = "insert into user(username, password, email) values (:username, :pass, :email)";
     $q = $conn->prepare($saveQuery);
     $q->bindParam(":username", $username);
 	$q->bindParam(":pass", $pass);
 	$q->bindParam(":email", $email);
-    $q->execute();
+    return $q->execute();
   }
   
 
