@@ -13,6 +13,6 @@
 	(
 		'validated' => false,
 		'username' => "NAME"
-	)
+	);
 
 ?>

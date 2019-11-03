@@ -17,7 +17,6 @@ include ($_SERVER["DOCUMENT_ROOT"] . "/includes/arrays.php");
 	</head>
 
 	<body class="stack" id="page-wrapper">
-	
 		<div class="header-bar">
 			<?php echo '<a href="' . $navLinks['dashboard'] . '"> <img src="/resources/quadrant-logo.png" id="logo-img"> </a>'; ?> 
 			
@@ -37,7 +36,7 @@ include ($_SERVER["DOCUMENT_ROOT"] . "/includes/arrays.php");
 			//<!-- if LOGGED in, display Hi, $NAME!, link to account.php -->
 			else 
 			{
-				$buttonText = "Hi, {$userStatus['username']}!";
+				$buttonText = "Hi, {$_SESSION['username']}!";
 				$buttonLink = $navLinks['account'];
 			}
 			

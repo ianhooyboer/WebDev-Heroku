@@ -15,7 +15,7 @@ $_SESSION = array();
 if ($valid) 
 {
 	$_SESSION['logged_in'] = true;
-   
+	$_SESSION['username'] = $username;
 	header("Location: " . $navLinks['dashboard']);
 	
 	exit;

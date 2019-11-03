@@ -1,19 +1,34 @@
 <div class="sidebar">
-<!-- this will be a link -->
 	<?php 
 		echo '<a href="' . $navLinks['newgame'] . '"> Add New Game </a>';
 	?>
 
-	<hr/>	
-	
-	<!-- dynamically generate this list and link to the specific game's preference page -->
-	<ul>
-	
-		<li> Game 1 </li>
-		
-		<li> Game 2 </li>
-		
-		<li> Game 3 </li>
-	
-	</ul>
+	<hr/>
+
+    <?php
+    if ($_SESSION['logged_in'] == false)
+    {
+
+    }
+    else
+     {
+
+
+
+    echo '<p> Your Games: </p>';
+
+	//<!-- dynamically generate this list and link to the specific game's preference page -->
+	echo '<ul>';
+            require_once ($_SERVER["DOCUMENT_ROOT"] . "/Dao.php");
+            $dao = new Dao();
+            $games = $dao->getGames();
+
+            foreach($games as $game)
+            {
+                echo "<li>" . $game['name']. "</li>";
+            }
+
+    echo '</ul>';
+     }
+    ?>
 </div>

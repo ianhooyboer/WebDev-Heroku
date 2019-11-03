@@ -29,23 +29,12 @@ class Dao {
    public function getGames() {
     $conn = $this->getConnection();
     try {
-	//$sql = "select boardgame.name from user join bgCollection on user.ID = bgCollection.UserID join boardgame on bgCollection.bgID = boardgame.ID where username = testname";
-	$sql = "select username from user";
-    //return $conn->query("select comment_id, comment, date_entered  from comment order by date_entered asc", PDO::FETCH_ASSOC);
+	$sql = "select boardgame.name from user join bgCollection on user.ID = bgCollection.UserID 
+                                            join boardgame on bgCollection.bgID = boardgame.ID 
+                                            where username = '" . $_SESSION['username'] . "'";
+
 	return $conn->query($sql, PDO::FETCH_ASSOC);
-	//echo $test->rowCount();
-	//return $test;
-	//$query = "select boardgame.name from user join bgCollection on user.ID = bgCollection.UserID join boardgame on bgCollection.bgID = boardgame.ID where username = testname";
-	//$q = $conn->prepare($query);
-	////$q->bindParam(":username", $user);
-	//$q->execute();
-	
-	
-	//select username, boardgame.name
-	//from user join bgCollection on user.ID = bgCollection.UserID
-	//		join boardgame on bgCollection.bgID = boardgame.ID
-	
-	
+
     } catch(Exception $e) {
       echo print_r($e,1);
       exit;
@@ -89,7 +78,59 @@ public function saveUser ($username, $pass, $email)
 	$q->bindParam(":email", $email);
 	
     return $q->execute();
-}   
+}
+
+public function saveNewGame($name, $genre, $competitive, $avgplaytime, $numplayers)
+{
+    $conn = $this->getConnection();
+
+    $sql = "insert into boardgame (name, genre, isCompetitive, avgPlaytime, numPlayers)
+values (:name, :genre, :comp, :avgplaytime, :numplayers)";
+
+    $q = $conn->prepare($sql);
+
+    $q->bindParam(":name", $name);
+    $q->bindParam(":genre", $genre);
+    $q->bindParam(":comp", $competitive);
+    $q->bindParam(":avgplaytime", $avgplaytime);
+    $q->bindParam(":numplayers", $numplayers);
+
+    return $q->execute();
+}
+
+public function addToCollection($name)
+{
+    $userID = -1;
+    $gameID = -1;
+
+    $conn = $this->getConnection();
+
+    $sql = "select ID from User where username = '" . $_SESSION['username'] . "'";
+    $userIDs = $conn->query($sql, PDO::FETCH_ASSOC);
+
+    foreach ($userIDs as $uid)
+    {
+        $userID = $uid['ID'];
+    }
+
+    $sql = "select ID from boardgame where name = '" . $name . "'";
+    $gameIDs = $conn->query($sql, PDO::FETCH_ASSOC);
+
+    foreach ($gameIDs as $gid)
+    {
+        $gameID = $gid['ID'];
+    }
+
+    $sql = "insert into bgCollection (UserID, bgID)
+            values (:uid, :gid)";
+
+    $q = $conn->prepare($sql);
+
+    $q->bindParam(":uid", $userID);
+    $q->bindParam(":gid", $gameID);
+
+    return $q->execute();
+}
 
   /* public function deleteComment ($id) {
     $conn = $this->getConnection();
