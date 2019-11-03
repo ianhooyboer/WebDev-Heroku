@@ -25,7 +25,7 @@
 
             foreach($games as $game)
             {
-                echo "<li>" . $game['name']. "</li>";
+                echo "<li>" . htmlspecialchars($game['name']) . "</li>";
             }
 
     echo '</ul>';

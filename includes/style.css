@@ -47,7 +47,7 @@
 .sidebar {
 	flex: 0 0 auto;
 	
-	width: 10 vw;
+	width: 10vw;
 	padding: 1vw;
 	
 	border-right-color: black;
@@ -66,10 +66,17 @@
 
 /* end region - areas */
 
+.card {
+	border: solid black 2.5px;
+	color: red;
+
+	background-color: #FFFFFF;
+}
+
 #logo-img {
 	height: 7vw;
 	width: 7vw;
-	margin: 5;
+	margin: 5px;
 }
 
 h1 {
@@ -94,7 +101,7 @@ h1 {
 }
 
 .top-margin {
-	margin-top: .5vw;
+	margin-top: 1vw;
 }
 
 .r-align { 
@@ -106,9 +113,8 @@ h1 {
  
  .message {
   color: white;
-  padding: 10 10;
-  margin-top: 10px;
-  margin: 5 50;
+  padding: 10px 10px;
+	 margin: 5px 50px;
   width: 40%;
 } 	
 

@@ -22,29 +22,21 @@ include($_SERVER["DOCUMENT_ROOT"] . "/includes/sidebar.php");
 			echo '<p> Please log in to begin building your game collection! </p>';
 		}
 		else {
-			//<!-- replace this with a readout of a user's games -->
-			 
-			
-				require_once ($_SERVER["DOCUMENT_ROOT"] . "/Dao.php");
-				$dao = new Dao();
-				$games = $dao->getGames(); 
-			
-				//if ($games->rowCount() > 0) 
-				//{
-				//	echo "<ul>";
-				
-				//	foreach($games as $game)
-				//	{
-				//		echo "<li>" . $game['username'] . "</li>";
-				//	}
-					
-				//	echo "</ul>";
-				//}
-				//else 
-				//{
-				//	echo '<p> This is your dashboard! </p>';
-				//	echo '<p> Add a game to begin building your collection! </p>';
-				//} 
+            echo '<h2> Dashboard </h2>';
+
+            //<!-- dynamically generate this list and link to the specific game's preference page -->
+            require_once ($_SERVER["DOCUMENT_ROOT"] . "/Dao.php");
+            $dao = new Dao();
+            $games = $dao->getGames();
+
+            foreach($games as $game)
+            {
+                    echo "- - - TODO: show a card of information for each game - - -";
+                    echo "<div class=\\'card\\'>";
+                        echo htmlspecialchars($game['name']);
+                    echo "</div>";
+            }
+
 		}
 	?>		
 		

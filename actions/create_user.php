@@ -8,15 +8,13 @@
     $sentiment = '';
 	
 	$user = $_POST['username'];
-	//$messages[] =  "you are here: " . $user;
 	if (strlen($user) < 4)
 	{
 		$messages[] = "Username must be at least four characters.";
 		unset($presets['username']);
 	}
 	
-	$pass = $_POST['password']; 
-	//$messages[] =  $pass;
+	$pass = $_POST['password'];
 	if (strlen($pass) < 8)
 	{
 		$messages[] = "Password must be at least eight characters.";
@@ -24,8 +22,12 @@
 	}
 	
 	$email = $_POST['email'];
-	//$messages[] = $email;
-	//TODO: Validate Email with RegEx here
+    if (preg_match($emailRegex, $email) != 1)
+    {
+        $messages[] = "Please input a valid email address";
+        unset($presets['email']);
+    }
+
 	
 	if (count($messages) > 0)
 	{

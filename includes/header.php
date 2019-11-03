@@ -30,7 +30,7 @@ include ($_SERVER["DOCUMENT_ROOT"] . "/includes/arrays.php");
 			//<!-- if NOT logged in, display MY ACCOUNT button, link to login.php -->
 			if ($_SESSION['logged_in'] == false)
 			{
-				$buttonText = "My Account";
+				$buttonText = "Log In";
 				$buttonLink = $navLinks['login'];
 			}							
 			//<!-- if LOGGED in, display Hi, $NAME!, link to account.php -->

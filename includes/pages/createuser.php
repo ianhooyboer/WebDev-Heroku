@@ -25,7 +25,7 @@ include($_SERVER["DOCUMENT_ROOT"] . "/includes/sidebar.php");
 			<div> Email </div>
 			<div> <input type="text" name="email"/> </div>			
 			
-			<div   class="top-margin"> <input type="submit"/> </div>
+			<div class="top-margin"> <input type="submit"/> </div>
 		</form>
 
 	<?php
