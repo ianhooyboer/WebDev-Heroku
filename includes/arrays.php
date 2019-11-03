@@ -11,7 +11,8 @@
 	
 	$userStatus = array
 	(
-		'validated' => false
+		'validated' => false,
+		'username' => "NAME"
 	)
 
 ?>

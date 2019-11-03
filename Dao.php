@@ -1,4 +1,7 @@
 <?php
+require_once 'KLogger.php';
+include ($_SERVER["DOCUMENT_ROOT"] . "/includes/arrays.php"); 
+
 class Dao {
 
   //mysql://b8c562c114e95a:1ce332c6@us-cdbr-iron-east-05.cleardb.net/heroku_c799c9203bcbb61?reconnect=true
@@ -7,6 +10,12 @@ class Dao {
   private $dbname = 'heroku_c799c9203bcbb61';
   private $username = 'b8c562c114e95a';
   private $password = '1ce332c6';
+  private $logger;	 
+  
+  public function __construct() {
+    $this->logger = new KLogger ( "dao_log.txt" , KLogger::INFO );
+	//throw new Exception('in the Dao constructor');
+  }
 
   public function getConnection() {
     try {
@@ -45,36 +54,42 @@ class Dao {
   }
   
 public function isValidUser($user, $pass)
-	{
-		$conn = $this->getConnection();
-	  
-		$sql = "select Count(*) from User where username = :username AND password = :password";
-		$q = $conn->prepare($sql);
-		$q->bindParam(":username", $user);
-		$q->bindParam(":password", $pass);
-		$q->execute();	  
+{ 
+		$conn = $this->getConnection(); 
+		$sql = "select username, password from User where username = '" . $user . "'"; 
+		$results = $conn->query($sql, PDO::FETCH_ASSOC);
 		
-		if ($q->fetchColumn() == 1)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
+		foreach($results as $res)
+		{ 
+			$hash = $res['password']; 
+			if (password_verify($pass, $hash))
+			{
+				$userStatus['username'] = $user;
+				return true;
+			}
+		}		 
+		
+		return false;  
+} 
   
-  
-   public function saveUser ($username, $pass, $email) {
-    $conn = $this->getConnection();
+public function saveUser ($username, $pass, $email) 
+{
+	$conn = $this->getConnection();
+	
+	//TODO: verify that the username/email does not already exist
+	
     $saveQuery = "insert into user(username, password, email) values (:username, :pass, :email)";
     $q = $conn->prepare($saveQuery);
+	
     $q->bindParam(":username", $username);
-	$q->bindParam(":pass", $pass);
+	
+	$hash = password_hash($pass, PASSWORD_DEFAULT);
+	
+	$q->bindParam(":pass", $hash); 
 	$q->bindParam(":email", $email);
+	
     return $q->execute();
-  }
-  
+}   
 
   /* public function deleteComment ($id) {
     $conn = $this->getConnection();

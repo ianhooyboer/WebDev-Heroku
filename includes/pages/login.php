@@ -15,8 +15,7 @@ include($_SERVER["DOCUMENT_ROOT"] . "/includes/sidebar.php");
 
 <!-- header & sidebar same for all pages -->
  
-	<div class="page-content">
-	<!-- replace this with a form that validates user input against the DB -->
+	<div class="page-content"> 
 		<form method="POST" action="/actions/login_handler.php">
 			<div> LOGIN </div>
 			<input type="text" name="login"/>

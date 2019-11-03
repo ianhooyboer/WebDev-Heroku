@@ -37,7 +37,7 @@ include ($_SERVER["DOCUMENT_ROOT"] . "/includes/arrays.php");
 			//<!-- if LOGGED in, display Hi, $NAME!, link to account.php -->
 			else 
 			{
-				$buttonText = "Hi, NAME!";
+				$buttonText = "Hi, {$userStatus['username']}!";
 				$buttonLink = $navLinks['account'];
 			}
 			
