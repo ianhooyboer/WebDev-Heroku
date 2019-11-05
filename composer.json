@@ -1,1 +1,6 @@
-{}
+{
+    "name": "ihooy/aggrega",
+    "description": "Aggregames website for Web Dev",
+    "type": "project",
+    "require": {}
+}
